@@ -12,7 +12,7 @@ st.set_page_config(
 )
 
 # 页面标题
-st.title("UMAP 图集展示")
+st.title("UMAP of datasets")
 
 # 图像根目录
 UMAP_ROOT_DIR = 'single_dataset_umap_imgs'
@@ -59,12 +59,17 @@ def get_unique_options(images, level):
 
 # 初始化过滤器
 selected_filters = []
-
+texts=["atlas/query/overview","tissue","dataset_type","dataset_id"]
 for level in range(4):  # 0到3代表4级目录
     options = get_unique_options(all_images, level)
     if options:
+        # selected = st.sidebar.selectbox(
+        #     f"选择第 {level + 1} 级目录",
+        #     ["所有"] + options,
+        #     key=f"filter_level_{level}"
+        # )
         selected = st.sidebar.selectbox(
-            f"选择第 {level + 1} 级目录",
+            f"{texts[level]}",
             ["所有"] + options,
             key=f"filter_level_{level}"
         )
